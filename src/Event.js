@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Event extends Component {
  state = {
-  event: [],
   showDetails: false,
  }
 
@@ -21,13 +20,13 @@ class Event extends Component {
    <div className="Event">
     <div className="EventOverview">
      <p className="EventName">
-      {this.state.event.name}
+      {this.props.event.name}
      </p>
      <p className="EventDate">
-      {this.state.event.local_date}
+      {this.props.event.local_date}
      </p>
      <p className="EventTime">
-      {this.state.event.local_time}
+      {this.props.event.local_time}
      </p>
      <button onClick={this.handleShowDetails}>
       Show More
@@ -36,7 +35,7 @@ class Event extends Component {
     {showDetails &&
      <div className="EventDescriptionContainer">
       <p className="EventDescription">
-       {this.state.event.description}
+       {this.props.event.description}
       </p>
       <button onClick={this.handleHideDetails}>
        Show Less

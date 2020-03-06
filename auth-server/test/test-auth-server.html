@@ -1,6 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head> </head>
+
+<body>
+  <div id="container">
+    <input id="code" type="text" placeholder="code" />
+    <!-- Access Token -->
+    <button id="getToken">Get Token</button>
+    <!-- Refresh Token -->
+    <button id="refreshToken">Refresh Access Token</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const getTokenElement = document.getElementById('getToken');
+    const refreshTokenElement = document.getElementById('refreshToken');
+
+    getTokenElement.onclick = function () {
+      const codeElement = document.getElementById('code');
+      const resultElement = document.getElementById('result');
+      const codeValue = codeElement.value;
+
+      const lambdaURL = `https://z2f4aj83pi.execute-api.eu-west-2.amazonaws.com/dev/api/token/${codeValue}`;
+
+      fetch(lambdaURL)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          resultElement.innerText = JSON.stringify(json);
+        });
+    };
+
+    refreshTokenElement.onclick = function () {
+      const codeElement = document.getElementById('code');
+      const resultElement = document.getElementById('result');
+      const codeValue = codeElement.value;
+
+      const lambdaURL = `https://z2f4aj83pi.execute-api.eu-west-2.amazonaws.com/dev/api/refresh/${codeValue}`;
+
+      fetch(lambdaURL)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          resultElement.innerText = JSON.stringify(json);
+        });
+    };
+  </script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
 <head>
 </head>
 
@@ -57,4 +112,4 @@
   </script>
 </body>
 
-</html>
+</html> -->

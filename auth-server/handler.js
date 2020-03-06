@@ -12,12 +12,14 @@ module.exports.getAccessToken = async (event) => {
     + '&code=' + event.pathParameters.code;
 
   const info = await axios.post(MEETUP_OAUTH_URL);
-  console.log(info.data, '=***&&=======');
 
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:8080'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Access-Control-Allow-Origin': '*',
+      'X-OAuth-Scopes': 'basic, reporting, ageless',
+      'X-Accepted-OAuth-Scopes': 'basic, reporting, ageless'
     },
     body: JSON.stringify({
       access_token: info.data.access_token,
@@ -39,7 +41,10 @@ module.exports.refreshAccessToken = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:8080'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Access-Control-Allow-Origin': '*',
+      'X-OAuth-Scopes': 'basic, reporting',
+      'X-Accepted-OAuth-Scopes': 'basic, reporting'
     },
     body: JSON.stringify({
       access_token: info.data.access_token,

@@ -25,7 +25,6 @@
       const resultElement = document.getElementById('result');
       const codeValue = codeElement.value;
       const lambdaURL = 'https://z2f4aj83pi.execute-api.eu-west-2.amazonaws.com/dev/api/token/' + codeValue;
-      console.log(lambdaURL);
 
       fetch(lambdaURL)
         .then(function (response) {
@@ -33,6 +32,9 @@
         })
         .then(function (json) {
           resultElement.innerText = JSON.stringify(json);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
 

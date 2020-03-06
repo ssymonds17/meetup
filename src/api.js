@@ -88,6 +88,7 @@ function getAccessToken() {
 }
 
 async function getOrRenewAccessToken(type, key) {
+ console.log(key, '**====');
  let url;
  if (type === 'get') {
   // Lambda endpoint to get token by code

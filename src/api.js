@@ -46,7 +46,7 @@ async function getEvents(lat, lon, page) {
 
  if (token) {
   let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
-   + '&access_token' + token;
+   + '&access_token=' + token;
   // lat, lon is optional, if present they can be added
   if (lat && lon) {
    url += '&lat' + lat + '&lon=' + lon;

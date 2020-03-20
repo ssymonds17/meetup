@@ -1,4 +1,4 @@
-import { puppeteer } from 'puppeteer';
+const puppeteer = require('puppeteer');
 
 describe('show/hide an event details', () => {
  let browser;

@@ -28,18 +28,18 @@ class Event extends Component {
      <p className="EventTime">
       {this.props.event.local_time}
      </p>
-     <button onClick={this.handleShowDetails}>
-      Show More
-     </button>
+     {!showDetails &&
+      <button className="details-btn" onClick={this.handleShowDetails}>Show More</button>
+     }
+     {showDetails &&
+      <button className="details-btn" onClick={this.handleHideDetails}>Show Less</button>
+     }
     </div>
     {showDetails &&
      <div className="EventDescriptionContainer">
       <p className="EventDescription">
        {this.props.event.description}
       </p>
-      <button onClick={this.handleHideDetails}>
-       Show Less
-      </button>
      </div>
     }
    </div>

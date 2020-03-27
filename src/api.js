@@ -70,7 +70,7 @@ function getAccessToken() {
   const code = searchParams.get('code');
 
   if (!code) {
-   window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=59m4fh64fvor80i00f25e5ia7c&response_type=code&redirect_uri=https://ssymonds17.github.io/meetup/';
+   window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=ldc9mb8idsbqe85fu26gf8e5va&response_type=code&redirect_uri=https://ssymonds17.github.io/meetup/';
    return null;
   }
   return getOrRenewAccessToken('get', code);

@@ -8,6 +8,10 @@ import { getEvents } from './api';
 
 class App extends Component {
 
+  componentDidMount() {
+    getEvents().then(response => this.setState({ events: response }));
+  }
+
   state = {
     events: [],
     page: null,
@@ -16,16 +20,13 @@ class App extends Component {
     offlineText: '',
   }
 
-  componentDidMount() {
-    getEvents().then(response => this.setState({ events: response }));
-  }
-
   updateEvents = (lat, lon, page) => {
     if (!navigator.onLine) {
-      this.setState({ offlineText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' })
+      this.setState({ offlineText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' });
     } else {
       this.setState({ offlineText: '' })
     }
+
     if (lat && lon) {
       getEvents(lat, lon, this.state.page).then(response => this.setState({ events: response, lat, lon }));
     } else if (page) {

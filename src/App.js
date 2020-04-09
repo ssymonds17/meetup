@@ -3,22 +3,29 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import { OfflineAlert } from './Alert';
 import { getEvents } from './api';
 
 class App extends Component {
-
-  componentDidMount() {
-    getEvents().then(response => this.setState({ events: response }));
-  }
 
   state = {
     events: [],
     page: null,
     lat: null,
-    lon: null
+    lon: null,
+    offlineText: '',
+  }
+
+  componentDidMount() {
+    getEvents().then(response => this.setState({ events: response }));
   }
 
   updateEvents = (lat, lon, page) => {
+    if (!navigator.onLine) {
+      this.setState({ offlineText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' })
+    } else {
+      this.setState({ offlineText: '' })
+    }
     if (lat && lon) {
       getEvents(lat, lon, this.state.page).then(response => this.setState({ events: response, lat, lon }));
     } else if (page) {
@@ -37,6 +44,7 @@ class App extends Component {
           lat={this.state.lat}
           lon={this.state.lon} />
         <CitySearch updateEvents={this.updateEvents} />
+        <OfflineAlert text={this.state.offlineText} />
         <EventList events={this.state.events} />
       </div>
     );

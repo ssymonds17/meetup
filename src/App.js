@@ -44,8 +44,8 @@ class App extends Component {
           numberOfEvents={this.state.events.length}
           lat={this.state.lat}
           lon={this.state.lon} />
-        <CitySearch updateEvents={this.updateEvents} />
         <OfflineAlert text={this.state.offlineText} />
+        <CitySearch updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>
     );

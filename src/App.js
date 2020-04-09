@@ -43,8 +43,8 @@ class App extends Component {
           numberOfEvents={this.state.events.length}
           lat={this.state.lat}
           lon={this.state.lon} />
-        <WarningAlert text={this.state.warningText} />
         <CitySearch updateEvents={this.updateEvents} />
+        <WarningAlert text={this.state.warningText} />
         <EventList events={this.state.events} />
       </div>
     );

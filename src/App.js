@@ -3,7 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { OfflineAlert } from './Alert';
+import { WarningAlert } from './Alert';
 import { getEvents } from './api';
 
 class App extends Component {
@@ -17,14 +17,14 @@ class App extends Component {
     page: null,
     lat: null,
     lon: null,
-    offlineText: '',
+    warningText: ''
   }
 
   updateEvents = (lat, lon, page) => {
     if (!navigator.onLine) {
-      this.setState({ offlineText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' });
+      this.setState({ warningText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' });
     } else {
-      this.setState({ offlineText: '' })
+      this.setState({ warningText: '' })
     }
 
     if (lat && lon) {
@@ -44,7 +44,7 @@ class App extends Component {
           numberOfEvents={this.state.events.length}
           lat={this.state.lat}
           lon={this.state.lon} />
-        <OfflineAlert text={this.state.offlineText} />
+        <WarningAlert text={this.state.warningText} />
         <CitySearch updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>

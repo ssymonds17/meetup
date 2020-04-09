@@ -10,6 +10,11 @@ class App extends Component {
 
   componentDidMount() {
     getEvents().then(response => this.setState({ events: response }));
+    if (!navigator.onLine) {
+      this.setState({ warningText: 'Events are loaded from your last visit. Please connect to the internet to view up-to-date events.' });
+    } else {
+      this.setState({ warningText: '' });
+    }
   }
 
   state = {
@@ -21,12 +26,6 @@ class App extends Component {
   }
 
   updateEvents = (lat, lon, page) => {
-    if (!navigator.onLine) {
-      this.setState({ warningText: 'Events are loaded from your last visit. Please connect to the internet to view up-to-date events.' });
-    } else {
-      this.setState({ warningText: '' });
-    }
-
     if (lat && lon) {
       getEvents(lat, lon, this.state.page).then(response => this.setState({ events: response, lat, lon }));
     } else if (page) {

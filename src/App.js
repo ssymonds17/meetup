@@ -22,9 +22,9 @@ class App extends Component {
 
   updateEvents = (lat, lon, page) => {
     if (!navigator.onLine) {
-      this.setState({ warningText: 'Events loaded from last visit. Please connect to the internet to view up-to-date events.' });
+      this.setState({ warningText: 'Events are loaded from your last visit. Please connect to the internet to view up-to-date events.' });
     } else {
-      this.setState({ warningText: '' })
+      this.setState({ warningText: '' });
     }
 
     if (lat && lon) {

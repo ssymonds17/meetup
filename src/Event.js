@@ -51,7 +51,7 @@ class Event extends Component {
       </ResponsiveContainer>
      }
      {!event.rsvp_limit &&
-      <p>{event.yes_rsvp_count} people coming</p>
+      <p>{event.yes_rsvp_count} people going</p>
      }
      {!showDetails &&
       <button className="details-btn" onClick={this.handleShowDetails}>Show More</button>
